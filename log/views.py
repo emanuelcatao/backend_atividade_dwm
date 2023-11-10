@@ -1,10 +1,10 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, serializers
 from rest_framework.response import Response
 
 from .models import Log
 import json
 
-class LogSerializer():
+class LogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Log
         fields = '__all__'
@@ -13,7 +13,7 @@ class LogApiView(viewsets.ModelViewSet):
     serializer_class = LogSerializer
 
     def get_queryset(self):
-        queryset = None
+        queryset = Log.objects.all()
 
         return queryset
     
