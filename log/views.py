@@ -1,10 +1,10 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, serializers
 from rest_framework.response import Response
 
 from .models import Log
 import json
 
-class LogSerializer():
+class LogSerializer(serializers.ModelSerializer):
     class Meta:
         model = Log
         fields = '__all__'
