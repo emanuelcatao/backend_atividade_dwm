@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Log
+from .models import Operacao
 
-admin.site.register(Log)
+admin.site.register(Operacao)

@@ -1,29 +1,31 @@
 from rest_framework import viewsets, serializers
 from rest_framework.response import Response
 
-from .models import Log
+from .models import Operacao
 import json
 
-class LogSerializer(serializers.ModelSerializer):
+class OperacaoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Log
+        model = Operacao
         fields = '__all__'
 
-class LogApiView(viewsets.ModelViewSet):
-    serializer_class = LogSerializer
+
+class OperacaoApiView(viewsets.ModelViewSet):
+    serializer_class = OperacaoSerializer
 
     def get_queryset(self):
-        queryset = Log.objects.all()
+        queryset = Operacao.objects.all()
 
         return queryset
     
+
     def create(self, request, *args, **kwargs):
         print(f'Data: {request.data}')
         num1 = float(request.data.get('num1'))
         num2 = float(request.data.get('num2'))
         op = request.data.get('op')
 
-        novo_item = Log()
+        novo_item = Operacao()
 
         novo_item.num1 = num1
         novo_item.num2 = num2
@@ -41,7 +43,7 @@ class LogApiView(viewsets.ModelViewSet):
                     result = num1 * num2
         else:
             result = 'NaN'
-            
+
         novo_item.result = result
 
         novo_item.save()
