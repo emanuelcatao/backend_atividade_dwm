@@ -13,7 +13,7 @@ class LogApiView(viewsets.ModelViewSet):
     serializer_class = LogSerializer
 
     def get_queryset(self):
-        queryset = None
+        queryset = Log.objects.all()
 
         return queryset
     
@@ -29,16 +29,19 @@ class LogApiView(viewsets.ModelViewSet):
         novo_item.num2 = num2
         novo_item.op = op
 
-        match op:
-            case '+':
-                result = num1 + num2
-            case '-':
-                result = num1 - num2
-            case '/':
-                result = num1 / num2
-            case '*':
-                result = num1 * num2
-        
+        if(novo_item.num2 != 0):
+            match op:
+                case '+':
+                    result = num1 + num2
+                case '-':
+                    result = num1 - num2
+                case '/':
+                    result = num1 / num2
+                case '*':
+                    result = num1 * num2
+        else:
+            result = 'NaN'
+            
         novo_item.result = result
 
         novo_item.save()
