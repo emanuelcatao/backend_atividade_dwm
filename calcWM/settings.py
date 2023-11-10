@@ -26,6 +26,8 @@ SECRET_KEY = 'django-insecure-x&=ufr%!t4f)xjmc45h^r9sk4^%d^@bys4trjp3n-wg73-=m5#
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://dry-snowflake-3213.fly.dev/']
+CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
 
 
 # Application definition
